@@ -1,0 +1,52 @@
+# Optional: Override default repositories
+#trashGuideUrl: https://github.com/BlackDark/fork-TRASH-Guides
+#recyclarrConfigUrl: https://github.com/BlackDark/fork-recyclarr-configs
+
+# since v1.12.0. Optional. Enable for legacy configuration to clone full repos (trash, recyclarr) instead of sparse.
+# Default is false. Setting to true increases storage usage up to 10x.
+#enableFullGitClone: true
+
+# Optional: Enable anonymous telemetry tracking of feature usage
+# Default is false. Set to true to help improve Configarr by sharing anonymous usage statistics.
+telemetry: true
+
+# Optional: Paths for custom formats and templates
+localCustomFormatsPath: /app/cfs
+localConfigTemplatesPath: /app/templates
+
+# With this options you can disable or enable processing for *arrs. Default is enabled
+#sonarrEnabled: false
+#radarrEnabled: false
+#whisparrEnabled: false
+#readarrEnabled: false
+#lidarrEnabled: false
+
+# Sonarr Configuration
+sonarr:
+  instance1: # Instance name (can be any unique identifier)
+    base_url: http://sonarr:8989 # Sonarr instance URL
+    api_key: !secret SONARR_API_KEY # Reference to API key in secrets.yml
+    quality_definition:
+      type: series # Quality definition type for Sonarr
+
+    include: # Template includes
+      - template: 6fa7364373e8f06206871d9c20a4fb3e
+        source: TRASH # RECYCLARR (default) or TRASH
+      - template: 20e0fc959f1f1704bed501f23bdae76f
+        source: TRASH
+
+# Radarr Configuration
+radarr:
+  instance1: # Instance name (can be any unique identifier)
+    base_url: http://radarr:7878 # Radarr instance URL
+    api_key: !secret RADARR_API_KEY # Reference to API key in secrets.yml
+
+    quality_definition:
+      type: movie # Quality definition type for Radarr
+
+    include:
+      # Comment out any of the following includes to disable them
+      - template: 1fef28c8c919f31cd86283b1baf527d4
+        source: TRASH
+      - template: 722b624f9af1e492284c4bc842153a38
+        source: TRASH
